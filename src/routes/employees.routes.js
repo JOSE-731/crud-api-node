@@ -6,6 +6,6 @@ router.get("/empleados", getEmpleados)
 router.get("/empleado/:id", getEmpleado)
 router.post("/empleados", createEmpleados)
 router.put("/empleados", editEmpleados)
-router.delete("/empleados", deleteEmpleados)
+router.delete("/empleados/:id", deleteEmpleados)
 
 export default router;

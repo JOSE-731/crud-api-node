@@ -7,7 +7,7 @@ export const getEmpleados = async (req, res) => {
     res.send(rows)
 }
 
-//Muestra la informacion de un empleado
+//Muestra la informacion del empleado por su id
 export const getEmpleado = async (req, res) => {
     const { id } = req.params;
     const [rows] = await pool.query("SELECT * FROM EMPLOYEE WHERE id = ?", [
@@ -15,7 +15,7 @@ export const getEmpleado = async (req, res) => {
     ]);
 
     if (rows.length <= 0) {
-        return res.status(404).json({ message: "Employee not found" });
+        return res.status(404).json({ message: "Empleado no encontrado" });
     }
     res.send(rows)
 
@@ -33,5 +33,15 @@ export const createEmpleados = async (req, res) => {
     })
 };
 
+//Eliminar empleado
+export const deleteEmpleados = async (req, res) => {
+    const { id } = req.params;
+    const [rows] = await pool.query("DELETE FROM employee WHERE id = ?", [id]);
+
+    if (rows.affectedRows <= 0) {
+        return res.status(404).json({ message: "Empleado no encontrado" });
+    }
+
+    res.sendStatus(204);
+};
 export const editEmpleados = (req, res) => res.send("Editando empleados");
-export const deleteEmpleados = (req, res) => res.send("Eliminando empleados");
