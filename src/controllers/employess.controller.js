@@ -1,6 +1,9 @@
 import { pool } from '../database/conexion.js'
 //Controladores que apuntan a una ruta
-export const getEmpleados = (req, res) => res.send("retornando empleados");
+export const getEmpleados =  async (req, res) =>{
+    const [rows] = await pool.query('SELECT * FROM EMPLOYEE')
+    res.send(rows)
+}
 
 export const createEmpleados = async (req, res) => {
     const {name, salary} = req.body //Accedemos a lo que se envia en el request

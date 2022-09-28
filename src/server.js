@@ -12,7 +12,7 @@ const port = 3000;
 app.get("/test/db", testDB)
 
 app.use(express.json())//Metodo para analizar las solicitudes entrantes
-app.use(empleadosRutas)//De esta manera nuestras rutas estan en uso
+app.use('/api/v1/',empleadosRutas)//De esta manera nuestras rutas estan en uso
 app.use(pingRuta)
 
 app.listen(port, function(){
