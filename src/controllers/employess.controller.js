@@ -4,7 +4,14 @@ import { pool } from '../database/conexion.js'
 //Lista todos los empleados
 export const getEmpleados = async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM EMPLOYEE')
-    res.send(rows)
+    try {
+        res.send(rows)
+    } catch (error) {
+        return res.status(500).json({
+            message: "Error en la solicitud"
+        })
+    }
+
 }
 
 //Muestra la informacion del empleado por su id
